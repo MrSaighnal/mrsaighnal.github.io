@@ -13,7 +13,8 @@ What else do you need?
 
 * CCNA Cisco Network Academy
 * EJPT Elearn Security
-* ~~EPTP Elearn Security~~ (not yet)
+* ~~ECPPTv2 Elearn Security~~ (not yet)
+* ~~OSCP~~ (cooming soon)
 
 ### Catch Me on HackTheBox
 
