@@ -61,6 +61,13 @@
 .highlight .il { color: #009999 } /* Literal.Number.Integer.Long */
 
 /* Make line numbers unselectable: excludes line numbers from copy-paste user ops */
-.highlight .lineno {color:rgba(0,0,0,0.3);padding: 0 10px;-webkit-user-select: none;-moz-user-select: none; -o-user-select: none;}
+.highlight .lineno {
+  color: rgb(23, 99, 132);
+    padding: 0 10px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    /* background: #000; */
+    -o-user-select: none;
+}
 .lineno::-moz-selection {background-color: transparent;} /* Mozilla specific */
 .lineno::selection {background-color: transparent;} /* Other major browsers */
