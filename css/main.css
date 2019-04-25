@@ -268,14 +268,11 @@ img {
 
 footer {
   padding: 30px 0;
-  border-top: 1px #EAEAEA solid;
-  margin-top: 50px;
-  font-size: 14px;
-  background-color: {{ site.footer-col }};
-  {% if site.footer-img %}
-  background-image: url({{ site.footer-img }});
-  background-attachment: fixed;
-  {% endif %}
+    border-top: 1px #15181f solid;
+    /* color: #fff; */
+    margin-top: 50px;
+    font-size: 14px;
+    background-color: #151920;
 }
 
 footer p.text-muted {
