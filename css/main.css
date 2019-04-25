@@ -380,7 +380,11 @@ footer .theme-by {
   width: 192px;
 }
 .post-preview .post-read-more {
-  font-weight: 800;
+  font-weight: 100; */
+    font-size: 14px;
+    margin-left: 30px;
+    font-color: #000;
+    color: #625f5f;
 }
 
 @media only screen and (min-width: 768px) {
@@ -399,9 +403,12 @@ footer .theme-by {
 }
 
 .blog-tags a {
-  color: {{ site.link-col }};
-  text-decoration: none;
-  padding: 0px 5px;
+  color: #17698c;
+    border-radius: 4px;
+    padding: 2px 2px 2px;
+    background: #15181f;
+    text-decoration: none;
+    padding: 5px 5px;
 }
 
 .blog-tags a:hover {
