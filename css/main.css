@@ -784,3 +784,7 @@ td.gutter {
   font-style: italic;
   font-size: 16px;
 }
+
+.fa-inverse{
+  color: #17698c;
+}
