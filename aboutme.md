@@ -11,10 +11,10 @@ What else do you need?
 
 ### My Courses and Certifications.
 
-*CCNA Cisco Network Academy
-*EPTS Elearn Security
-*EPTP Elearn Security
+* CCNA Cisco Network Academy
+* EPTS Elearn Security
+* EPTP Elearn Security
 
-## Catch Me on HackTheBox
+### Catch Me on HackTheBox
 
 ![HTB badge](https://www.hackthebox.eu/badge/image/71209)
