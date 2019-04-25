@@ -331,7 +331,7 @@ footer .theme-by {
 
 .post-preview a {
   text-decoration: none;
-  color: #404040;
+  color: #d9d9d9;
 }
 
 .post-preview a:focus,
@@ -351,13 +351,13 @@ footer .theme-by {
 }
 .post-preview .post-meta,
 .post-heading .post-meta {
-  color: #808080;
-  font-size: 18px;
-  font-style: italic;
+  color: #adadad;
+  font-size: 14px;
+  /* font-style: italic; */
   margin: 0 0 10px;
 }
 .post-preview .post-entry {
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  /*font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; */
 }
 .post-entry-container {
   display: inline-block;
