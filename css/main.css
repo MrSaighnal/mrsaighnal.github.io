@@ -695,8 +695,8 @@ pre.highlight, .highlight > pre, td.code pre {
 code table, code table td, code table th, code table tbody, code table tr,
 td.gutter pre {
   padding: 0;
-  border: none;
-  background-color: #fff;
+    border: none;
+    background-color: #1a1f28;
 }
 .highlight > pre {
   padding: 0;
