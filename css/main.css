@@ -9,9 +9,9 @@ layout: null
 body {
   font-family: 'Lora', 'Times New Roman', serif;
   font-size: 18px;
-  color: #404040;
+  color: #afafaf;
   position: relative;
-  background-color: #18212a;
+  background-color: #1a1f28;
   background-image: url({{ site.page-img }});
   background-attachment: fixed;
   
