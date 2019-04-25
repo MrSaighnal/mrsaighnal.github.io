@@ -730,23 +730,31 @@ td.gutter {
 }
 
 .box-note {
-  background-color: #eee;
-  border-left-color: #2980b9;
+  background-color: #17698c;
+    border-color: #17698b;
+    border-left-color: #174a6c;
+    color: #fff;
 }
 
 .box-warning {
-  background-color: #fdf5d4;
-  border-left-color: #f1c40f;
+  background-color: #e7a91d;
+    color: #fff;
+    border-color: #e6a91b;
+    border-left-color: #a58912;
 }
 
 .box-error {
-  background-color: #f4dddb;
-  border-left-color: #c0392b;
+  background-color: #d54437;
+    border-left-color: #68241e;
+    border-color: #a52d2d;
+    color: #fff;
 }
 
 .box-success {
-  background-color: #98FB98;
-  border-left-color: #3CB371;
+  background-color: #4cba4c;
+    color: #fff;
+    border-color: #4cba4c;
+    border-left-color: #2f8b58;
 }
 
 /* Fix table border github gist snippets */
