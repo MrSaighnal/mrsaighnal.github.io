@@ -14,7 +14,7 @@ body {
   background-color: #18212a;
   background-image: url({{ site.page-img }});
   background-attachment: fixed;
-  {% endif %}
+  
 }
 p {
   line-height: 1.5;
