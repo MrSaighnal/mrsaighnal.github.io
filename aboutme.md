@@ -12,7 +12,7 @@ What else do you need?
 ### My Courses and Certifications.
 
 * CCNA Cisco Network Academy
-* EPTS Elearn Security
+* EJPT Elearn Security
 * ~~EPTP Elearn Security~~ (not yet)
 
 ### Catch Me on HackTheBox
