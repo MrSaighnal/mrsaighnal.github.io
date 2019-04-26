@@ -16,7 +16,7 @@ and the ip address
 10.10.10.29 
 ```
 
-so we to scanned it using nmap
+so we scanned it using nmap
 
 ~~~
 root@kali:~# nmap -sV -p- -n 10.10.10.29
@@ -43,12 +43,13 @@ we can notice we found 3 services to check.
 but there weren't known vulnerabilities for them.
 
 So We tried to connect on the 80 port for checking the web server, but we didn't get interesting things.
-The response was the default page of Apache, and weren't surprises hidden in the source code. We tried to enumerate hidden directory using dirbuster but nothing happened.
+The response was the default page of Apache, and there weren't hidden surprises in the source code.
+We continued the PT enumerating the hidden directories using **dirbuster** but nothing happened.
 
 
 We wasted many time trying to find the right way, 
-using big wordlist for the directories webserver enumeration, connecting to the 53 port without results, scanning UDP port of the machine.
-After few hours spent without results, we had an idea.
+using some big wordlist for the directories webserver enumeration, connecting to the 53 port, scanning UDP port of the machine but we didn't get any result.
+After few hours spent wasting time, we had an idea.
 Maybe the server was configured with virtualhost, so using the right domain we would be able to connect to the web application.
 
 so we edited our hosts file
