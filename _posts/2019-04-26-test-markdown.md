@@ -1,10 +1,10 @@
 ---
 layout: post
-title: bank Walktrough HTB
-subtitle: Each post also has a subtitle
+title: bank Walkthrough
+subtitle: Hack The Box Bank Solution
 gh-repo: daattali/beautiful-jekyll
 gh-badge: [star, fork, follow]
-tags: [test]
+tags: [bank, hackthebox, htb, walkthrough, pentest]
 comments: true
 ---
 We are going to do a penetration test of a nice machine from hackthebox.eu called bank. I made it in company of my work mate last [last](http://blog.notso.pro "last") in about 5 hours. This machine hasn't been so hard, but we had few problems to understand how to unlock the way to cross.
@@ -20,7 +20,6 @@ and the ip address
 so we to scanned it using nmap
 
 ~~~
-
 root@kali:~# nmap -sV -O -n 10.10.10.29
 Starting Nmap 7.70 ( https://nmap.org ) at 2019-04-26 13:45 CEST
 Nmap scan report for 10.10.10.29
@@ -48,7 +47,6 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
 OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 Nmap done: 1 IP address (1 host up) scanned in 19.96 seconds
-
 ~~~
 
 
