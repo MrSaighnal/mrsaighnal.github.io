@@ -73,7 +73,7 @@ root@kali:~/dirsearch# python3 dirsearch.py -u bank.htb -e * -w /usr/share/wordl
 ~~~
 let me analyze the command:
 - **-u bank.htb** for specifying the Host
-- **-e * ** for the extentions (we set ALL) 
+- **-e \* ** for the extentions (we set ALL) 
 - **-w /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-medium.txt** for the wordlist, i preferred to use the biggest wordlist for being sure
 
 That's the result
