@@ -40,13 +40,13 @@ we can notice we found 3 services to check.
 - ISC BIND 9.9.5-3ubuntu0.14
 - Apache httpd 2.4.7
 
-but there weren't knowed vulnerability for them.
+but there weren't known vulnerabilities for them.
 
 So We tried to connect on the 80 port for checking the web server, but we didn't get interesting things.
 The response was the default page of Apache, and weren't surprises hidden in the source code. We tried to enumerate hidden directory using dirbuster but nothing happened.
 
 
-We wasted a lot of time trying to find the right way, 
+We wasted many time trying to find the right way, 
 using big wordlist for the directories webserver enumeration, connecting to the 53 port without results, scanning UDP port of the machine.
 After few hours spent without results, we had an idea.
 Maybe the server was configured with virtualhost, so using the right domain we would be able to connect to the web application.
