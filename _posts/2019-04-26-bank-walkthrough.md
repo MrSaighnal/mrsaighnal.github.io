@@ -62,12 +62,10 @@ adding this line
 ~~~
 
 so going by browser on `bank.htb` TADA'!!!
-
-IMMAGINE WEBAPP
-
 we found the login panel of the web application.
 SQL injection didn't work, so we tried again to enumerate the directories.
 
+## ENUMERATION
 I launched my dear friends **dirsearch**
 
 ~~~
@@ -128,6 +126,8 @@ The vulnerability was inside the support page, there was an upload module, but w
 
 ![found-not-encrypted](https://mrsaighnal.github.io/img/posts/2019-04-26-bank-walkthrough/support-page.png "support-page")
 
+### EXPLOITATION
+
 Reading more deeply we discovered the developer missed an important information used for debugging inside the HTML source code.
 
 ~~~
@@ -153,7 +153,7 @@ user.txt output:
 {: .box-success}
 **Success:** User Owned.
 
-it's now time to have a real shell for managing our new system :-)
+it's now time to spawn real shell for managing our new system :-)
 
 let's get ready our computer for receving connections through **nc** using the command
 
@@ -198,6 +198,8 @@ www-data
 $ 
 ~~~
 it works.
+
+### PRIVILEDGE ESCALATION
 
 for priviledge escalation we launched a command for checking all files with high priviledge 
 
