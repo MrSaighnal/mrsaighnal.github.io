@@ -19,7 +19,7 @@ and the ip address
 
 so we to scanned it using nmap
 
-````
+~~~
 
 root@kali:~# nmap -sV -O -n 10.10.10.29
 Starting Nmap 7.70 ( https://nmap.org ) at 2019-04-26 13:45 CEST
@@ -49,7 +49,7 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 Nmap done: 1 IP address (1 host up) scanned in 19.96 seconds
 
-```
+~~~
 
 
 
