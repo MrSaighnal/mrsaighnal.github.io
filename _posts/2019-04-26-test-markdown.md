@@ -20,34 +20,102 @@ and the ip address
 so we to scanned it using nmap
 
 ~~~
-root@kali:~# nmap -sV -O -n 10.10.10.29
-Starting Nmap 7.70 ( https://nmap.org ) at 2019-04-26 13:45 CEST
+root@kali:~# nmap -sV -p- -n 10.10.10.29
+Starting Nmap 7.70 ( https://nmap.org ) at 2019-04-26 14:25 CEST
 Nmap scan report for 10.10.10.29
-Host is up (0.046s latency).
-Not shown: 997 closed ports
+Host is up (0.036s latency).
+Not shown: 65532 closed ports
 PORT   STATE SERVICE VERSION
 22/tcp open  ssh     OpenSSH 6.6.1p1 Ubuntu 2ubuntu2.8 (Ubuntu Linux; protocol 2.0)
 53/tcp open  domain  ISC BIND 9.9.5-3ubuntu0.14 (Ubuntu Linux)
 80/tcp open  http    Apache httpd 2.4.7 ((Ubuntu))
-No exact OS matches for host (If you know what OS is running on it, see https://nmap.org/submit/ ).
-TCP/IP fingerprint:
-OS:SCAN(V=7.70%E=4%D=4/26%OT=22%CT=1%CU=30269%PV=Y%DS=2%DC=I%G=Y%TM=5CC2EF6
-OS:E%P=x86_64-pc-linux-gnu)SEQ(SP=108%GCD=1%ISR=10D%TI=Z%CI=I%II=I%TS=8)OPS
-OS:(O1=M54DST11NW7%O2=M54DST11NW7%O3=M54DNNT11NW7%O4=M54DST11NW7%O5=M54DST1
-OS:1NW7%O6=M54DST11)WIN(W1=7120%W2=7120%W3=7120%W4=7120%W5=7120%W6=7120)ECN
-OS:(R=Y%DF=Y%T=40%W=7210%O=M54DNNSNW7%CC=Y%Q=)T1(R=Y%DF=Y%T=40%S=O%A=S+%F=A
-OS:S%RD=0%Q=)T2(R=N)T3(R=N)T4(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T5(R
-OS:=Y%DF=Y%T=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)T6(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F
-OS:=R%O=%RD=0%Q=)T7(R=Y%DF=Y%T=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)U1(R=Y%DF=N%
-OS:T=40%IPL=164%UN=0%RIPL=G%RID=G%RIPCK=G%RUCK=G%RUD=G)IE(R=Y%DFI=N%T=40%CD
-OS:=S)
-
-Network Distance: 2 hops
 Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
-OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
-Nmap done: 1 IP address (1 host up) scanned in 19.96 seconds
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 51.26 seconds
 ~~~
+
+we can notice we found 3 services to check.
+
+- OpenSSH 6.6.1p1
+- ISC BIND 9.9.5-3ubuntu0.14
+- Apache httpd 2.4.7
+
+but there weren't knowed vulnerability for them.
+
+So We tried to connect on the 80 port for checking the web server, but we didn't get interesting things.
+The response was the default page of Apache, and weren't surprises hidden in the source code. We tried to enumerate hidden directory using dirbuster but nothing happened.
+
+IMMAGINE DEFAUL APACHE
+
+We wasted a lot of time trying to find the right way, 
+using big wordlist for the directories webserver enumeration, connecting to the 53 port without results, scanning UDP port of the machine.
+After few hours spent without results, we had an idea.
+Maybe the server was configured with virtualhost, so using the right domain we would be able to connect to the web application.
+
+so we edited our hosts file
+~~~
+root@kali:/# nano etc/hosts
+~~~
+
+adding this line
+~~~
+10.10.10.29	bank.htb
+~~~
+
+so going by browser on `bank.htb` TADA'!!!
+
+IMMAGINE WEBAPP
+
+we found the login panel of the web application.
+SQL injection didn't work, so we tried again to enumerate the directories.
+
+I launched my dear friends **dirsearch**
+
+~~~
+root@kali:~/dirsearch# python3 dirsearch.py -u bank.htb -e * -w /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-medium.txt 
+~~~
+let me analyze the command:
+- **-u bank.htb** for specifying the Host
+- **-e * ** for the extentions (we set ALL) 
+- **-w /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-medium.txt** for the wordlist, i preferred to use the biggest wordlist for being sure
+
+That's the result
+
+~~~
+[15:06:44] Starting: 
+[15:06:44] 301 -  305B  - /uploads  ->  http://bank.htb/uploads/
+[15:06:45] 301 -  304B  - /assets  ->  http://bank.htb/assets/
+[15:06:48] 302 -    7KB - /  ->  login.php
+[15:06:52] 301 -  301B  - /inc  ->  http://bank.htb/inc/
+[15:12:19] 403 -  288B  - /server-status
+[15:18:06] 301 -  314B  - /balance-transfer  ->  http://bank.htb/balance-transfer/
+
+Task Completed
+~~~
+
+Our attenction was on
+
+~~~
+[15:18:06] 301 -  314B  - /balance-transfer  ->  http://bank.htb/balance-transfer/
+~~~
+
+in this directory there was an huge list of crypted .acc (account) files.
+
+FOTO LISTA
+
+an example of one single file
+
+FOTO SINGOLO FILE
+
+They were so similar, so **last** said me to check the size, We found one smaller then the others.
+
+IMMAGINE SELEZIONATA
+
+One file wasn't crypted and the informations were readable.
+
+IMMAGINE FILE CHIARO
+
 
 
 
