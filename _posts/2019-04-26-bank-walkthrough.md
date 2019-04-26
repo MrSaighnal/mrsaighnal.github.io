@@ -7,6 +7,12 @@ gh-badge: [star, fork, follow]
 tags: [bank, hackthebox, htb, walkthrough, pentest]
 comments: true
 ---
+Machine name: **bank**
+Hosted on: **hackthebox.eu**
+Type: **Capture the flag**
+Goal: **Get the contain of user.txt and root.txt**
+Time: **about 5h**
+
 We are going to do a penetration test of a nice machine from hackthebox.eu called bank. I made it in company of my work mate last [last](http://blog.notso.pro "last") in about 5 hours. This machine hasn't been so hard, but we had few problems to understand how to unlock the way to cross.
 The only information we received were the name of the machine
 ````
@@ -102,19 +108,60 @@ Our attenction was on
 
 in this directory there was an huge list of crypted .acc (account) files.
 
-FOTO LISTA
-
-an example of one single file
-
-FOTO SINGOLO FILE
-
 They were so similar, so **last** said me to check the size, We found one smaller then the others.
 
-IMMAGINE SELEZIONATA
+![found-not-encrypted](https://mrsaighnal.github.io/img/posts/2019-04-26-bank-walkthrough/found-not-encrypted.png "found-not-encrypted")
 
 One file wasn't crypted and the informations were readable.
 
-IMMAGINE FILE CHIARO
+~~~
+--ERR ENCRYPT FAILED
++=================+
+| HTB Bank Report |
++=================+
+
+===UserAccount===
+Full Name: Christos Christopoulos
+Email: chris@bank.htb
+Password: !##HTBB4nkP4ssw0rd!##
+CreditCards: 5
+Transactions: 39
+Balance: 8842803 .
+===UserAccount===
+~~~
+
+We were able to log in the platform, watching the balance, transaction history etc etc.
+The vulnerability was inside the support page, there was an upload module, but we didn't find a way for uploading malware right there.
+
+
+![found-not-encrypted](https://mrsaighnal.github.io/img/posts/2019-04-26-bank-walkthrough/support-page.png "support-page")
+
+Reading more deeply we discovered the developer missed an important information used for debugging inside the HTML source code.
+
+~~~
+<!-- [DEBUG] I added the file extension .htb to execute as php for debugging purposes only [DEBUG] -->
+~~~
+
+
+**thanks Mr Dev!** We can now upload our fantastic square-webshell (you should look at it on the [official repository](https://github.com/MrSaighnal/square-webshell "official repo")) simply changing the extension to .htb .
+
+exploring the file system we found the first flag
+
+~~~
+cat ../../../../home/chris/user.txt
+~~~
+
+user.txt output:
+~~~
+37c97f8609f361848d8872098b0721c3
+~~~
+
+![found-not-encrypted](https://mrsaighnal.github.io/img/posts/2019-04-26-bank-walkthrough/square-webshell.png "user owned")
+
+{: .box-success}
+**Success:** User Owned.
+
+
 
 
 
