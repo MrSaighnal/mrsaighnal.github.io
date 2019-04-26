@@ -484,6 +484,15 @@ footer .theme-by {
 .intro-header .page-heading h1 {
   margin-top: 0;
   font-size: 50px;
+  
+  font-family: Cabin,Helvetica,Arial,sans-serif;
+    font-weight: normal;
+    line-height: 1em;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+    font-weight: 800;
+    font-size: 4.5em;
+    color: #17698c;
 }
 .intro-header .post-heading h1 {
   margin-top: 0;
