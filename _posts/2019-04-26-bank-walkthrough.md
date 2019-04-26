@@ -2,9 +2,7 @@
 layout: post
 title: bank Walkthrough
 subtitle: Hack The Box Bank Solution
-gh-repo: daattali/beautiful-jekyll
-gh-badge: [star, fork, follow]
-tags: [bank, hackthebox, htb, walkthrough, pentest]
+tags: [bank, hackthebox, htb, walkthrough, pentest, CTF]
 comments: true
 ---
 
@@ -213,7 +211,7 @@ and the first apperd so weird:
 -rwsr-xr-x 1 root root 112204 Jun 14  2017 `/var/htb/bin/emergency`
 ~~~
 
-Our friend sysadmin misconfigurating the system leaving an important vulnerability open, through this file anyboyd is able to become root.
+Our friend sysadmin misconfigurated the system leaving an important vulnerability open, through this file anyboyd is able to become root.
 
 ~~~
 cd /var/htb/bin/
