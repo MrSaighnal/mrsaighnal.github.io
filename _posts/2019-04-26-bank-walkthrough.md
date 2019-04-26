@@ -6,8 +6,9 @@ tags: [bank, hackthebox, htb, walkthrough, pentest, CTF]
 comments: true
 ---
 
-We are going to do a penetration test of a nice machine from hackthebox.eu called bank. I made it in company of my work mate [last](http://blog.notso.pro "last") in about 5 hours. This machine hasn't been so hard, but we had few problems to understand how to unlock the way to cross.
-The only information we received were the name of the machine
+This is a penetration test for a machine from hackthebox.eu called bank. It was made in about 5 hours through my  coworker’s company [last](http://blog.notso.pro "last"). This machine has not been  difficult to hack but at the beginning, we did not know how to proceed so through trial and error and we successfully hacked the machine.
+The only information we received was the name of the machine.
+
 ````
 bank
 ````
