@@ -24,7 +24,18 @@ p {
   line-height: 1.5;
   margin: 30px 0;
 }
-h1,h2,h3,h4,h5,h6 {
+h1 {
+ font-family: Cabin,Helvetica,Arial,sans-serif;
+    font-weight: normal;
+    line-height: 1em;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+    font-weight: 800;
+    font-size: 4.5em;
+    color: #17698c; 
+}
+
+h2,h3,h4,h5,h6 {
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 800;
 }
@@ -485,14 +496,7 @@ footer .theme-by {
   margin-top: 0;
   font-size: 50px;
   
-  font-family: Cabin,Helvetica,Arial,sans-serif;
-    font-weight: normal;
-    line-height: 1em;
-    text-transform: uppercase;
-    letter-spacing: 10px;
-    font-weight: 800;
-    font-size: 4.5em;
-    color: #17698c;
+  
 }
 .intro-header .post-heading h1 {
   margin-top: 0;
