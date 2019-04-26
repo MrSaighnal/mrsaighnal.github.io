@@ -214,7 +214,7 @@ and the first apperd so weird:
 -rwsr-xr-x 1 root root 112204 Jun 14  2017 `/var/htb/bin/emergency`
 ~~~
 
-Our friend sysadmin misconfigurated the system leaving an important vulnerability open, through this file anyboyd is able to become root.
+Our friend sysadmin misconfigurated the system leaving an important vulnerability open, through this file anybody is able to become root.
 
 ~~~
 cd /var/htb/bin/
