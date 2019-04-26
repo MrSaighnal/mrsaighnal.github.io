@@ -7,11 +7,11 @@ gh-badge: [star, fork, follow]
 tags: [bank, hackthebox, htb, walkthrough, pentest]
 comments: true
 ---
-Machine name: **bank**
-Hosted on: **hackthebox.eu**
-Type: **Capture the flag**
-Goal: **Get the contain of user.txt and root.txt**
-Time: **about 5h**
+- Machine name: **bank**
+- Hosted on: **hackthebox.eu**
+- Type: **Capture the flag**
+- Goal: **Get the contain of user.txt and root.txt**
+- Time: **about 5h**
 
 We are going to do a penetration test of a nice machine from hackthebox.eu called bank. I made it in company of my work mate last [last](http://blog.notso.pro "last") in about 5 hours. This machine hasn't been so hard, but we had few problems to understand how to unlock the way to cross.
 The only information we received were the name of the machine
