@@ -11,10 +11,11 @@ What else do you need?
 
 ### My Courses and Certifications.
 
-* CCNA Cisco Network Academy
-* EJPT Elearn Security
-* ~~ECPPTv2 Elearn Security~~ (not yet)
-* ~~OSCP~~ (cooming soon)
+* CCNA - Cisco Network Academy
+* eJPT - eLearnSecurity Junior Penetration Tester
+* eCPPTv2 -  eLearnSecurity Certified Professional Penetration Tester
+* ~~OSCP~~ - Offensive Security Certified Professional (work in progress)
+* ~~eCPTX~~ - eLearnSecurity Certified Penetration Tester eXtreme (coming soon)
 
 ### Catch Me on HackTheBox
 
