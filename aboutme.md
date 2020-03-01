@@ -9,13 +9,23 @@ I also like pets, reading about space exploration, music, good movies and escape
 
 What else do you need?
 
-### My Courses and Certifications.
+### My Certifications.
 
-* CCNA - Cisco Network Academy
-* eJPT - eLearnSecurity Junior Penetration Tester
-* eCPPTv2 -  eLearnSecurity Certified Professional Penetration Tester
-* ~~OSCP~~ - Offensive Security Certified Professional (work in progress)
-* ~~eCPTX~~ - eLearnSecurity Certified Penetration Tester eXtreme (coming soon)
+* eJPT - eLearnSecurity - Junior Penetration Tester
+* eCPPTv2 -  eLearnSecurity - Certified Professional Penetration Tester
+* eCPTX - eLearnSecurity - Certified Penetration Tester eXtreme
+* ~~OSCP~~ - Offensive Security - Certified Professional (work in progress)
+
+
+### My Courses.
+
+* CCNA-1 - Cisco Network Academy
+* PTS, eLearnSecurity - Penetration Tester Student
+* PTP, eLearnSecurity - Penetration Tester Professional
+* PTX, eLearnSecurity - Penetration Tester eXtreme
+* ICS 410, SANS Institute - Industrial Control Systems 410 - ICS/SCADA
+* PWK, Offensive Security - Penetration Test With Kali
+
 
 ### Catch Me on HackTheBox
 
