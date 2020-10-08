@@ -1,6 +1,6 @@
 ---
 layout: page
-title: About me
+title: Whoami
 subtitle: You really want to know?
 ---
 
@@ -14,7 +14,7 @@ What else do you need?
 * eJPT - eLearnSecurity - Junior Penetration Tester
 * eCPPTv2 -  eLearnSecurity - Certified Professional Penetration Tester
 * eCPTX - eLearnSecurity - Certified Penetration Tester eXtreme
-* ~~OSCP~~ - Offensive Security - Certified Professional (work in progress)
+* OSCP - Offensive Security - Certified Professional
 
 
 ### My Courses.
@@ -23,6 +23,7 @@ What else do you need?
 * PTS, eLearnSecurity - Penetration Tester Student
 * PTP, eLearnSecurity - Penetration Tester Professional
 * PTX, eLearnSecurity - Penetration Tester eXtreme
+* PortSwigger Academy
 * ICS 410, SANS Institute - Industrial Control Systems 410 - ICS/SCADA
 * PWK, Offensive Security - Penetration Test With Kali
 
