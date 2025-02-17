@@ -16,7 +16,7 @@ body {
     -webkit-font-smoothing: antialiased;
   color: #afafaf;
   position: relative;
-  background-color: #1a1f28;
+  background-color: #0e1114;
   background-image: url({{ site.page-img }});
   background-attachment: fixed;
   
