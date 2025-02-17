@@ -835,7 +835,11 @@ p {
   font-size: 18px !important;
 }
 
-* {
+ul {
+  font-size: 18px !important;
+}
+
+li {
   font-size: 18px !important;
 }
 
