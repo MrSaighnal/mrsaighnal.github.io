@@ -55,9 +55,7 @@ blockquote p:first-child {
   margin-top: 0;
 }
 
-h2 a:hover {
-  color: #17698c !important; /* Sostituisci 'red' con il colore che vuoi */
-}
+
 
 hr.small {
   max-width: 100px;
@@ -838,6 +836,10 @@ color: #17698c;
 
 h2, h3, h4, h5, h6, h7 {
 color: #ffffff;
+}
+
+h2 a:hover {
+  color: #17698c !important;
 }
 
 p {
