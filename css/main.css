@@ -14,7 +14,7 @@ body {
     /* text-rendering: geometricPrecision; */
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
-  color: #afafaf;
+  color: #f2f2f2;
   position: relative;
   background-color: #0e1114;
   background-image: url({{ site.page-img }});
