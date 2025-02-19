@@ -839,11 +839,12 @@ h2 a:hover {
 }
 
 p {
-  font-size: 19px !important;
+  font-size: 20px !important;
+  text-align: justify;
 }
 
 ul {
-  font-size: 19px !important;
+  font-size: 20px !important;
 }
 
 li {
