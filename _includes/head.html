@@ -9,6 +9,16 @@
 
   <meta name="author" content="{{ site.author.name }}" />
 
+<script>
+  if (window.location.hostname.includes("github.io")) {
+    var meta = document.createElement('meta');
+    meta.name = "robots";
+    meta.content = "noindex, nofollow";
+    document.head.appendChild(meta);
+  }
+</script>
+
+  
   {% if page.subtitle %}
   <meta name="description" content="{{ page.subtitle }}">
   {% endif %}
